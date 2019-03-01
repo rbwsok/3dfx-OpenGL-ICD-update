@@ -1,0 +1,146 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAINWND DIALOG DISCARDABLE  0, 0, 295, 218
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "3dfx Voodoo OpenGL control"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,186,201,50,14
+    PUSHBUTTON      "Exit",IDCANCEL,5,201,50,14
+    CONTROL         "Tab1",IDC_TAB1,"SysTabControl32",0x0,3,3,289,195
+    PUSHBUTTON      "Apply",IDAPPLY,241,201,50,14
+    PUSHBUTTON      "Default",IDC_DEFAULT,61,201,50,14
+END
+
+IDD_PROP1 DIALOG DISCARDABLE  0, 0, 279, 124
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "compress all RGB/RGBA textures for Voodoo4/5 (experemental)",
+                    IDC_COMPRESS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,28,
+                    268,10
+    COMBOBOX        IDC_RESOLUTION,83,73,109,68,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Force system resolution on 2D primary card (for Voodoo 2)",
+                    IDC_FRES,6,40,193,50
+    CONTROL         "None",IDC_NONERES,"Button",BS_AUTORADIOBUTTON,8,51,33,
+                    10
+    CONTROL         "Window resolution",IDC_WINRES,"Button",
+                    BS_AUTORADIOBUTTON,8,62,74,10
+    CONTROL         "User resolution",IDC_URES,"Button",BS_AUTORADIOBUTTON,8,
+                    73,63,10
+    LTEXT           "Detect 3dfx ICD driver:",IDC_STATIC,7,6,73,8
+    LTEXT           "Static",IDC_VERDRV,87,6,188,8
+    CONTROL         "Support large (up to 2048x2048) RGB/RGBA textures (for Voodoo Banshee/2/3)",
+                    IDC_LARGETEXTURE,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,5,95,269,10
+    LTEXT           "Detect OpenGL update:",IDC_STATIC,7,17,77,8
+    LTEXT           "Static",IDC_VERDRVUPD,87,17,188,8
+END
+
+IDD_PROP2 DIALOG DISCARDABLE  0, 0, 284, 180
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "List1",IDC_EXTLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,0,0,284,165
+    PUSHBUTTON      "Select all",IDC_SELALL,3,167,43,11
+    PUSHBUTTON      "Unselect all",IDC_UNSELALL,51,167,43,11
+END
+
+IDD_ABOUT DIALOG DISCARDABLE  0, 0, 237, 114
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "(c) Rainbow '2006",IDC_STATIC,114,63,58,9
+    LTEXT           "3dfx Voodoo OpenGL control v1.2",IDC_STATIC,89,49,114,9
+    CONTROL         102,IDC_STATIC,"Static",SS_BITMAP,32,59,47,20
+    LTEXT           "mail to: rbws@mail.ru",IDC_STATIC,110,76,67,8
+END
+
+IDD_PROP3 DIALOG DISCARDABLE  0, 0, 284, 178
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "List1",IDC_EXTLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,0,0,284,165
+    PUSHBUTTON      "Select all",IDC_SELALL,3,167,43,11
+    PUSHBUTTON      "Unselect all",IDC_UNSELALL,51,167,43,11
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP2             BITMAP  DISCARDABLE     "WIEW1.BMP"
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

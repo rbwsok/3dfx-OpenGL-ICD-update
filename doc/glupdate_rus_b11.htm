@@ -1,0 +1,587 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=koi8-r">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>3dfx OpenGL update for Voodoo Banshee/3/4/5</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p align="center"><font size="6" face="Times New Roman Cyr"><strong>3dfx
+OpenGL Update для Voodoo Banshee/2/3/4/5</strong></font></p>
+
+<p align="center"><font size="4">build 011 (от 21.01.2005)</font></p>
+
+<p align="left"><em><u>ВНИМАНИЕ:</u></em><em> автор
+программы не несет никакой
+ответственности за возможный
+ущерб, причиненный в результате
+работы этой программы.</em></p>
+
+<p align="left"><font size="3">1. </font><a href="#intro"><font
+size="3">Что это такое и зачем оно
+нужно?</font></a><font size="3"><br>
+2. </font><a href="#new"><font size="3">Новые
+возможности</font></a><font size="3"><br>
+3. </font><a href="#install"><font size="3">Установка</font></a><font
+size="3"><br>
+4.</font><a href="#src"><font size="3"> Исходники</font></a><font
+size="3"><br>
+5. </font><a href="#glcontr"><font size="3">OpenGL Control</font></a><font
+size="3"><br>
+6. </font><a href="#hist"><font size="3">История
+изменений</font></a></p>
+
+<p align="left"><a name="intro"></a><font size="4">1. Что
+это такое и зачем оно нужно?</font></p>
+
+<p align="left">OpenGL Update - это dll'ка, которая
+встает между программой и
+стандартным 3dfx OpenGL ICD драйвером и
+перехватывает часть функций OpenGL.</p>
+
+<p align="left">Все надстройки и навороты
+в OpenGL делаются через механизм
+расширений. И программа, проверяя
+список расширений, работает или не
+работает, в зависимости от того,
+найдено ли необходимое расширение.
+OpenGL Update добавляет ряд расширений к
+базовым. Причем далеко не все
+расширения поддерживаются
+аппаратно и вообще производят
+какие-либо действия. </p>
+
+<p align="left">Основная цель OpenGL Update - это
+возможность запуска и работы как
+можно большего количества
+программ. </p>
+
+<p align="left">OpenGL Update написан на базе GxpOGL
+build 1016, автор - Ryan Nunn. <a
+href="http://www.users.on.net/triforce/glidexp/">http://www.users.on.net/triforce/glidexp</a></p>
+
+<p align="left"><a name="new"></a><font size="4">2. Новые
+возможности.</font></p>
+
+<p align="left"><font size="3">Помимо новых
+расширений, OpenGL Update добавляет еще
+несколько возможностей, и
+исправляет некоторые глюки, а
+именно:</font></p>
+
+<p align="left"><font size="3">для Voodoo 4/5:</font></p>
+
+<ol>
+    <li><p align="left"><font size="3">Быстрая
+        компрессия текстур.</font></p>
+    </li>
+    <li><p align="left"><font size="3">Автокомпрессия
+        всех входящих RGB/RGBA текстур.
+        Немного увеличивает скорость.
+        Качество естественно
+        ухудшается, но
+        непринципиально. Может
+        понадобится для программ,
+        использующих большие объемы
+        (более 32мб) текстур
+        одновременно. </font></p>
+    </li>
+    <li><p align="left"><font size="3">Для Voodoo 5 5500.
+        Исправлено количество сэмплов
+        для FSAA 4x, возвращаемое
+        GL_3DFX_multisample.</font></p>
+    </li>
+    <li><p align="left"><font size="3">Исправлено
+        имя экспортируемой функции для
+        GL_3DFX_tbuffer.</font></p>
+    </li>
+</ol>
+
+<p align="left"><font size="3">для Voodoo Banshee/2/3</font></p>
+
+<ol>
+    <li><p align="left"><font size="3">Для Voodoo2:
+        исправление следующего бага:
+        при запуске некоторых программ
+        изображение сдвигается на 2/3
+        экрана вниз, так что в
+        результате видим только
+        верхнюю треть изображения.
+        Лечится с помощью
+        принудительной установки
+        разрешения через OpenGL Control utilite.</font></p>
+    </li>
+</ol>
+
+<p align="left">Ниже приводятся все
+расширения:</p>
+
+<table border="0">
+    <tr>
+        <td valign="top"><strong>Voodoo 2</strong></td>
+        <td valign="top"><strong>Voodoo Banshee</strong></td>
+        <td valign="top"><strong>Voodoo 3</strong></td>
+        <td valign="top"><strong>Voodoo 4</strong></td>
+        <td valign="top"><strong>Voodoo 5</strong></td>
+    </tr>
+    <tr>
+        <td valign="top"><p align="left">GL_APPLE_packed_pixels<br>
+        GL_ARB_multitexture<br>
+        GL_ARB_point_parameters<br>
+        GL_ARB_texture_env_add<br>
+        GL_ARB_transpose_matrix<br>
+        GL_ARB_vertex_buffer_object<br>
+        GL_ARB_window_pos<br>
+        GL_EXT_abgr<br>
+        GL_EXT_bgra<br>
+        GL_EXT_clip_volume_hint<br>
+        GL_EXT_compiled_vertex_array<br>
+        GL_EXT_fog_coord<br>
+        GL_EXT_generate_mipmap<br>
+        GL_EXT_multi_draw_arrays<br>
+        GL_EXT_packed_pixels<br>
+        GL_EXT_paletted_texture<br>
+        GL_EXT_point_parameters<br>
+        GL_EXT_rescale_normal<br>
+        GL_EXT_shared_texture_palette<br>
+        GL_EXT_stencil_wrap<br>
+        GL_EXT_texture_edge_clamp<br>
+        GL_EXT_texture_env_add<br>
+        GL_EXT_texture_filter_anisotropic<br>
+        GL_EXT_vertex_array<br>
+        GL_IBM_multimode_draw_arrays<br>
+        GL_MESA_window_pos<br>
+        GL_NV_fence<br>
+        GL_NV_light_max_exponent<br>
+        GL_NV_pixel_data_range<br>
+        GL_NV_vertex_array_range<br>
+        GL_NV_vertex_array_range2<br>
+        GL_SGI_texture_edge_clamp<br>
+        GL_SGIS_generate_mipmap<br>
+        GL_SGIS_multitexture<br>
+        GL_SGIS_texture_edge_clamp<br>
+        GL_SUN_multi_draw_arrays<br>
+        GL_WIN_swap_hint<br>
+        WGL_3DFX_gamma_control<br>
+        WGL_ARB_extensions_string<br>
+        WGL_EXT_extensions_string<br>
+        WGL_EXT_swap_control<br>
+        </p>
+        </td>
+        <td valign="top">GL_APPLE_packed_pixels<br>
+        GL_ARB_point_parameters<br>
+        GL_ARB_texture_env_add, <br>
+        GL_ARB_transpose_matrix<br>
+        GL_ARB_vertex_buffer_object <br>
+        GL_ARB_window_pos <br>
+        GL_EXT_abgr<br>
+        GL_EXT_bgra <br>
+        GL_EXT_clip_volume_hint <br>
+        GL_EXT_compiled_vertex_array <br>
+        GL_EXT_fog_coord <br>
+        GL_EXT_generate_mipmap <br>
+        GL_EXT_multi_draw_arrays <br>
+        GL_EXT_packed_pixels <br>
+        GL_EXT_paletted_texture <br>
+        GL_EXT_point_parameters <br>
+        GL_EXT_rescale_normal <br>
+        GL_EXT_shared_texture_palette <br>
+        GL_EXT_stencil_wrap <br>
+        GL_EXT_texture_edge_clamp <br>
+        GL_EXT_texture_env_add <br>
+        GL_EXT_texture_filter_anisotropic<br>
+        GL_EXT_vertex_array <br>
+        GL_IBM_multimode_draw_arrays <br>
+        GL_MESA_window_pos <br>
+        GL_NV_fence <br>
+        GL_NV_light_max_exponent <br>
+        GL_NV_pixel_data_range <br>
+        GL_NV_vertex_array_range <br>
+        GL_NV_vertex_array_range2 <br>
+        GL_SGI_texture_edge_clamp <br>
+        GL_SGIS_generate_mipmap <br>
+        GL_SGIS_texture_edge_clamp <br>
+        GL_SUN_multi_draw_arrays<br>
+        GL_WIN_swap_hint<br>
+        WGL_3DFX_gamma_control<br>
+        WGL_ARB_extensions_string<br>
+        WGL_ARB_pixel_format<br>
+        WGL_EXT_extensions_string<br>
+        WGL_EXT_swap_control</td>
+        <td valign="top">GL_APPLE_packed_pixels<br>
+        GL_ARB_multitexture<br>
+        GL_ARB_point_parameters<br>
+        GL_ARB_texture_env_add, <br>
+        GL_ARB_transpose_matrix<br>
+        GL_ARB_vertex_buffer_object <br>
+        GL_ARB_window_pos <br>
+        GL_EXT_abgr<br>
+        GL_EXT_bgra <br>
+        GL_EXT_clip_volume_hint <br>
+        GL_EXT_compiled_vertex_array <br>
+        GL_EXT_fog_coord <br>
+        GL_EXT_generate_mipmap <br>
+        GL_EXT_multi_draw_arrays <br>
+        GL_EXT_packed_pixels <br>
+        GL_EXT_paletted_texture <br>
+        GL_EXT_point_parameters <br>
+        GL_EXT_rescale_normal <br>
+        GL_EXT_shared_texture_palette <br>
+        GL_EXT_stencil_wrap <br>
+        GL_EXT_texture_edge_clamp <br>
+        GL_EXT_texture_env_add <br>
+        GL_EXT_texture_filter_anisotropic<br>
+        GL_EXT_vertex_array <br>
+        GL_IBM_multimode_draw_arrays <br>
+        GL_MESA_window_pos <br>
+        GL_NV_fence <br>
+        GL_NV_light_max_exponent <br>
+        GL_NV_pixel_data_range <br>
+        GL_NV_vertex_array_range <br>
+        GL_NV_vertex_array_range2 <br>
+        GL_SGI_texture_edge_clamp <br>
+        GL_SGIS_generate_mipmap <br>
+        GL_SGIS_multitexture <br>
+        GL_SGIS_texture_edge_clamp <br>
+        GL_SUN_multi_draw_arrays<br>
+        GL_WIN_swap_hint<br>
+        WGL_3DFX_gamma_control<br>
+        WGL_ARB_extensions_string<br>
+        WGL_ARB_pixel_format<br>
+        WGL_EXT_extensions_string<br>
+        WGL_EXT_swap_control</td>
+        <td valign="top">GL_3DFX_multisample <br>
+        GL_3DFX_texture_compression_FXT1<br>
+        GL_APPLE_packed_pixels<br>
+        GL_ARB_multisample<br>
+        GL_ARB_multitexture<br>
+        GL_ARB_point_parameters<br>
+        GL_ARB_texture_compression<br>
+        GL_ARB_texture_env_add, <br>
+        GL_ARB_texture_env_combine<br>
+        GL_ARB_transpose_matrix<br>
+        GL_ARB_vertex_buffer_object <br>
+        GL_ARB_window_pos <br>
+        GL_EXT_abgr<br>
+        GL_EXT_bgra <br>
+        GL_EXT_blend_subtract <br>
+        GL_EXT_clip_volume_hint <br>
+        GL_EXT_compiled_vertex_array <br>
+        GL_EXT_fog_coord <br>
+        GL_EXT_generate_mipmap <br>
+        GL_EXT_multi_draw_arrays <br>
+        GL_EXT_packed_pixels <br>
+        GL_EXT_paletted_texture <br>
+        GL_EXT_point_parameters <br>
+        GL_EXT_rescale_normal <br>
+        GL_EXT_shared_texture_palette <br>
+        GL_EXT_stencil_wrap <br>
+        GL_EXT_texture_compression_s3tc <br>
+        GL_EXT_texture_edge_clamp <br>
+        GL_EXT_texture_env_add <br>
+        GL_EXT_texture_env_combine <br>
+        GL_EXT_texture_filter_anisotropic<br>
+        GL_EXT_vertex_array <br>
+        GL_IBM_multimode_draw_arrays <br>
+        GL_MESA_window_pos <br>
+        GL_NV_fence <br>
+        GL_NV_light_max_exponent <br>
+        GL_NV_pixel_data_range <br>
+        GL_NV_vertex_array_range <br>
+        GL_NV_vertex_array_range2 <br>
+        GL_S3_s3tc <br>
+        GL_SGI_texture_edge_clamp <br>
+        GL_SGIS_generate_mipmap <br>
+        GL_SGIS_multitexture <br>
+        GL_SGIS_texture_edge_clamp <br>
+        GL_SUN_multi_draw_arrays<br>
+        GL_WIN_swap_hint<br>
+        WGL_3DFX_gamma_control<br>
+        WGL_3DFX_multisample<br>
+        WGL_ARB_extensions_string<br>
+        WGL_ARB_multisample<br>
+        WGL_ARB_pixel_format<br>
+        WGL_EXT_extensions_string<br>
+        WGL_EXT_swap_control</td>
+        <td valign="top">GL_3DFX_multisample <br>
+        GL_3DFX_tbuffer<br>
+        GL_3DFX_texture_compression_FXT1<br>
+        GL_APPLE_packed_pixels<br>
+        GL_ARB_multisample<br>
+        GL_ARB_multitexture<br>
+        GL_ARB_point_parameters<br>
+        GL_ARB_texture_compression<br>
+        GL_ARB_texture_env_add, <br>
+        GL_ARB_texture_env_combine<br>
+        GL_ARB_transpose_matrix<br>
+        GL_ARB_vertex_buffer_object <br>
+        GL_ARB_window_pos <br>
+        GL_EXT_abgr<br>
+        GL_EXT_bgra <br>
+        GL_EXT_blend_subtract <br>
+        GL_EXT_clip_volume_hint <br>
+        GL_EXT_compiled_vertex_array <br>
+        GL_EXT_fog_coord <br>
+        GL_EXT_generate_mipmap <br>
+        GL_EXT_multi_draw_arrays <br>
+        GL_EXT_packed_pixels <br>
+        GL_EXT_paletted_texture <br>
+        GL_EXT_point_parameters <br>
+        GL_EXT_rescale_normal <br>
+        GL_EXT_shared_texture_palette <br>
+        GL_EXT_stencil_wrap <br>
+        GL_EXT_texture_compression_s3tc <br>
+        GL_EXT_texture_edge_clamp <br>
+        GL_EXT_texture_env_add <br>
+        GL_EXT_texture_env_combine <br>
+        GL_EXT_texture_filter_anisotropic<br>
+        GL_EXT_vertex_array <br>
+        GL_IBM_multimode_draw_arrays <br>
+        GL_MESA_window_pos <br>
+        GL_NV_fence <br>
+        GL_NV_light_max_exponent <br>
+        GL_NV_pixel_data_range <br>
+        GL_NV_vertex_array_range <br>
+        GL_NV_vertex_array_range2 <br>
+        GL_S3_s3tc <br>
+        GL_SGI_texture_edge_clamp <br>
+        GL_SGIS_generate_mipmap <br>
+        GL_SGIS_multitexture <br>
+        GL_SGIS_texture_edge_clamp <br>
+        GL_SUN_multi_draw_arrays<br>
+        GL_WIN_swap_hint<br>
+        WGL_3DFX_gamma_control<br>
+        WGL_3DFX_multisample<br>
+        WGL_ARB_extensions_string<br>
+        WGL_ARB_multisample<br>
+        WGL_ARB_pixel_format<br>
+        WGL_EXT_extensions_string<br>
+        WGL_EXT_swap_control</td>
+    </tr>
+</table>
+
+<p align="left"><a name="install"></a><font size="4">3.
+Установка.</font></p>
+
+<p align="left"><font size="3"><strong>Для Voodoo2:</strong>
+необходим 3dfx OpenGL v1.0.0.0508 от 27 января
+2000г.<br>
+Его оригинальное имя 3dfxvgl.dll.
+Находится в WINDOWS\SYSTEM\ или WINNT\SYSTEM32\.
+Этот файл необходимо переименовать
+или скопировать в эту же папку с
+именем 3dfxicd.dll. OpenGL Update c именем
+opengl32.dll надо использовать, как и
+другие альтернативные OpenGL драйверы
+- т.е. копировать в папку с
+программой.</font></p>
+
+<p align="left"><font size="3"><strong>Для Voodoo
+Banshee/3/4/5: </strong>необходим 3dfx OpenGL
+v1.0.0.0761 от 16 января 2001г.<br>
+Его оригинальное имя 3dfxogl.dll.
+Находится в WINDOWS\SYSTEM\ или WINNT\SYSTEM32\.
+Этот файл необходимо переименовать
+или скопировать в эту же папку с
+именем 3dfxicd.dll. OpenGL Update c именем
+opengl32.dll, можно использовать как и в
+случае с Voodoo2 - копировать в папку с
+программой. А можно заменить Microsoft
+OpenGL драйвер. Для этого в Win9x нужно
+заменить файл opengl32.dll в WINDOWS\SYSTEM,
+файлом c OpenGL Update. Для Win2k/XP - надо
+заменить opengl32.dll в WINNT\SYSTEM32\, а также
+в WINNT\SYSTEM32\DLLCACHE\. При этом будет
+всегда использоваться OpenGL Update.</font></p>
+
+<p align="left"><font size="3">Но замена Microsoft OpenGL
+может негативно отразится в том
+случае, если появится
+необходимость установить другую
+(не 3dfx) карту.</font></p>
+
+<p align="left"><font size="3">Менять имя OpenGL Update
+с opengl32.dll на какое-либо другое
+нельзя. Т.к. правильно работать не
+будет.</font></p>
+
+<p align="left"><font size="3">Для запуска
+утилиты OpenGL Control необходимо, чтобы
+dll'ка OpenGL Update была в одной папке с
+утилитой. Или когда OpenGL Update
+заменяет Microsoft OpenGL. Изменения,
+сделанные с помощью OpenGL Control,
+централизованно влияют на все
+копии OpenGL Update.</font></p>
+
+<p align="left"><a name="src"></a><font size="4">4.
+Исходники.</font></p>
+
+<p align="left"><font size="3">В архиве, помимо
+самой dll'ки находятся также и
+исходники. Текущая версия
+собиралась с помощью MSVC 6.0 + SP6 + DX9 SDK.</font></p>
+
+<p align="left"><a name="glcontr"></a><font size="4">5. OpenGL
+Control.</font></p>
+
+<p align="left"><font size="3">OpenGL Control
+представляет собой утилиту
+управления OpenGL Update. Все параметры
+разнесены на несколько закладок. На
+первых двух можно выбирать
+расширения, которые будут
+возвращаться другой программе.</font></p>
+
+<p align="center"><img src="1.gif" width="449" height="379"></p>
+
+<p align="center"><img src="2.gif" width="449" height="379"></p>
+
+<p align="left">Напротив расширений может
+находиться комментарий. native 3dfx icd
+означает, что это расширение
+присутствует в стандартном 3dfx icd
+драйвере v1.0.0.0761 для Voodoo5 5500. В
+списках представлены все
+расширения, в том числе не
+поддерживаемые более младшими
+картами. При использовании OpenGL Update
+они будут автоматически
+исключаться.</p>
+
+<p align="center"><img src="3.gif" width="449" height="379"></p>
+
+<p align="left">На закладке <strong>Options</strong>
+представлены опции
+дополнительного управления.</p>
+
+<p align="left"><strong>Compress all RGB/RGBA textures</strong>
+включает автоматическую
+компрессию текстур.</p>
+
+<p align="left"><strong>Force system resolution on 2D primary
+card </strong>- позволяет форсировать
+расширение системное расширение
+Windows. <br>
+Значение None - нет принудительной
+установки разрешения.<br>
+Значение Window resolution -
+устанавливается разрешение,
+аналогичное размерам вызывающего
+окна. Именно установка этого флага
+позволяет в некоторых программах
+исправить ошибку со смещением
+изображения на 2/3 вниз. Для
+коммерческих игрушек обычно не
+требуется.<br>
+Значение User resolution позволяет
+вручную задать требуемое
+расширение.</p>
+
+<p align="left"><a name="hist"></a><font size="4">6.
+История изменений.</font></p>
+
+<p align="left"><font size="3">08.07.2003 - первые
+изменения в GxpOGL 1016. попытка
+реализовать OpenGL v1.3.</font></p>
+
+<p align="left"><font size="3">08.08.2003 - build 003<br>
+стабильная версия. удалены
+возможно нерабочие расширения v1.2 и
+1.3 и расширения v1.0 -&gt; v1.1<br>
++ GL_ARB_multisample - неполная поддержка
+(эмуляция через GL_3DFX_multisample)<br>
+<br>
+03.09.2003 - build 004<br>
++ GL_NV_fence<br>
++ GL_NV_vertex_array_range<br>
++ GL_NV_vertex_array_range2<br>
++ GL_NV_pixel_data_range<br>
+<br>
+08.09.2003 - build 005<br>
++ GL_MESA_window_pos<br>
++ GL_ARB_window_pos<br>
+<br>
+12.09.2003 - build 006<br>
++ GL_SGIS_generate_mipmap<br>
+<br>
+01.01.2004 - build 007<br>
++ GL_EXT_generate_mipmap<br>
+* исправлена ошибка в GL_3DFX_multisample (и
+GL_ARB_multisample) для<br>
+Voodoo5 5500 на счет запроса количества
+сэмплов для FSAA.<br>
+<br>
+20.05.2004 - build 008 <br>
++ GL_ARB_vertex_buffer_object<br>
+<br>
+30.06.2004 - build 009<br>
+! создание OpenGL control утилиты<br>
+! реализация компрессии всех
+входящих RGB/RGBA текстур через DXTC.<br>
++ GL_ARB_texture_env_combine - неполная
+поддержка (доступно только через
+OpenGL control)<br>
++ GL_EXT_texture_filter_anisotropic - соответствует
+спецификации, но ничего не делает.<br>
+</font>+ GL_NV_light_max_exponent<font size="3"> -
+соответствует спецификации, но
+ничего не делает.<br>
+* исправлена неточность в
+GL_IBM_multimode_draw_arrays в соответствии с
+официальным реестром расширений</font></p>
+
+<p align="left">10.07.2004 - build 010<br>
+! полностью, с нуля переписана
+инициализация. <br>
+из недостатков - dll'ка обязательно
+требует называться opengl32.dll. <br>
+из нововведений - поддержка icd
+v1.0.0.0508 для Voodoo2. в теории можно
+поддержать любую версию 3dfx icd,<br>
+но пока останавливаюсь на
+максимальных рабочих релизах для
+различных Voodoo.<br>
+была бы Voodoo Graphics - ее бы тоже
+прикрутил.<br>
+работа на Voodoo2 проверялась в SLI и
+одинарном режиме, а также в
+мультимониторных конфигурациях,
+когда Voodoo2<br>
+подключалась к различным
+видеокартам. <br>
+! обновлена OpenGL Control utilite. для Voodoo2
+можно задать принудительное
+изменение расширение на 2d карте.<br>
+это нужно для исправления такого
+бага, как смещение изображения на 2/3
+вниз в некоторых программах. <br>
+* исправлен небольшой глюк с
+автокомпрессией текстур.<br>
+* исправлена реализация
+GL_ARB_vertex_buffer_object.<br>
+* исправлена реализация
+GL_SGIS_generate_mipmap/GL_EXT_generate_mipmap.<br>
++ GL_APPLE_packed_pixels<br>
++ GL_EXT_rescale_normal<br>
+</p>
+
+<p align="left">21.01.2005 - build 011<br>
+* исправлена автокомпрессия
+текстур для Voodoo 4/5 (надеюсь
+окончательно).<br>
+* <font size="3">GL_ARB_texture_env_combine по
+умолчанию включено.</font></p>
+
+<p align="left">Буду рад выслушать любые
+отзывы, предложения и комментарии.</p>
+
+<p align="left"><em>Певцов Константин aka Rainbow
+(</em><a href="mailto:rbws@mail.ru"><em>rbws@mail.ru</em></a><em>)</em></p>
+
+<p align="left"><em>21.01.2005</em></p>
+</body>
+</html>
